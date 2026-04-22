@@ -1,62 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='de'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bierpong Tournament Application</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Bierpong Turnier</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        #teamAssignment, #schedule, #results, #leaderboard { margin: 20px; padding: 20px; border: 1px solid #ccc; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #8B4513, #D2B48C);
+            color: #FFF;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        button {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background-color: #FFC107;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1>Bierpong Tournament Application</h1>
-    <div id="teamAssignment">
-        <h2>Team Assignment</h2>
-        <!-- JavaScript will populate this section -->
+    <h1>Willkommen zum Bierpong Turnier!</h1>
+    <div class='section' id='setup'>
+        <h2>Turnier Setup</h2>
+        <button onclick='setupTournament()'>Turnier Einrichten 🍺</button>
     </div>
-    <div id="schedule">
-        <h2>Match Schedule</h2>
-        <!-- JavaScript will populate this section -->
+    <div class='section' id='playerInput'>
+        <h2>Spieler Eingabe</h2>
+        <button onclick='inputPlayers()'>Spieler Eingeben</button>
     </div>
-    <div id="results">
-        <h2>Results Tracking</h2>
-        <!-- JavaScript will populate this section -->
+    <div class='section' id='teamAssignment'>
+        <h2>Team Zuweisung</h2>
+        <button onclick='assignTeams()'>Teams Zuweisen</button>
     </div>
-    <div id="leaderboard">
-        <h2>Leaderboard</h2>
-        <!-- JavaScript will populate this section -->
+    <div class='section' id='schedule'>
+        <h2>Spielplan</h2>
+        <button onclick='createSchedule()'>Spielplan Erstellen</button>
     </div>
-
+    <div class='section' id='results'>
+        <h2>Ergebnisse</h2>
+        <button onclick='viewResults()'>Ergebnisse Ansehen</button>
+    </div>
+    <div class='section' id='leaderboard'>
+        <h2>Rangliste</h2>
+        <button onclick='viewLeaderboard()'>Rangliste Ansehen</button>
+    </div>
     <script>
-        const teams = [];
-        const results = [];
-
+        function setupTournament() {
+            // Local storage functionality to store tournament details
+            localStorage.setItem('tournament', 'Bierpong Turnier');
+            alert('Turnier erfolgreich eingerichtet!');
+        }
+        function inputPlayers() {
+            // Function to input player names
+            const players = prompt('Bitte geben Sie die Namen der Spieler ein, getrennt durch Kommas:');
+            localStorage.setItem('players', players);
+            alert('Spieler erfolgreich hinzugefügt!');
+        }
         function assignTeams() {
-            // Logic for team assignment
-            // Example: teams.push('Team A', 'Team B');
+            // Function to assign players to teams
+            const players = localStorage.getItem('players').split(',');
+            alert('Teams wurden erfolgreich zugewiesen: ' + JSON.stringify(players));
         }
-
-        function scheduleMatches() {
-            // Logic for scheduling matches
+        function createSchedule() {
+            // Function to create a schedule
+            alert('Spielplan wurde erstellt!');
         }
-
-        function trackResults() {
-            // Logic for tracking results
+        function viewResults() {
+            // Function to view results
+            alert('Ergebnisse anzeigen!');
         }
-
-        function updateLeaderboard() {
-            // Logic for updating the leaderboard
+        function viewLeaderboard() {
+            // Function to view leaderboard
+            alert('Rangliste anzeigen!');
         }
-
-        function init() {
-            assignTeams();
-            scheduleMatches();
-            trackResults();
-            updateLeaderboard();
-        }
-
-        init();
     </script>
 </body>
 </html>
