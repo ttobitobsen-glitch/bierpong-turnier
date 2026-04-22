@@ -3,125 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bierpong Tournament</title>
+    <title>Bierpong Tournament Application</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .hidden { display: none; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { border: 1px solid #000; padding: 10px; text-align: center; }
-        .button { padding: 10px 20px; margin: 5px; }
+        body { font-family: Arial, sans-serif; }
+        #teamAssignment, #schedule, #results, #leaderboard { margin: 20px; padding: 20px; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
-    <h1>Bierpong Tournament</h1>
-    <div id="start-page">
-        <h2>Start Page</h2>
-        <label for="player-count">Number of Players:</label>
-        <input type="number" id="player-count" min="2" max="16" value="4"><br>
-        <label for="team-count">Number of Teams:</label>
-        <input type="number" id="team-count" min="1" max="8" value="2"><br>
-        <label for="format">Tournament Format:</label>
-        <select id="format">
-            <option value="groups">Groups</option>
-            <option value="ko">K.O.</option>
-        </select><br>
-        <button id="start-tournament" class="button">Start Tournament</button>
+    <h1>Bierpong Tournament Application</h1>
+    <div id="teamAssignment">
+        <h2>Team Assignment</h2>
+        <!-- JavaScript will populate this section -->
     </div>
-    <div id="player-inputs" class="hidden">
-        <h2>Player Names</h2>
-        <div id="players"></div>
-        <button id="assign-teams" class="button">Assign Teams</button>
+    <div id="schedule">
+        <h2>Match Schedule</h2>
+        <!-- JavaScript will populate this section -->
     </div>
-    <div id="tournament-schedule" class="hidden">
-        <h2>Tournament Schedule</h2>
-        <table id="schedule"></table>
+    <div id="results">
+        <h2>Results Tracking</h2>
+        <!-- JavaScript will populate this section -->
     </div>
-    <div id="results-entry" class="hidden">
-        <h2>Results Entry</h2>
-        <table id="results-table"></table>
-        <button id="submit-results" class="button">Submit Results</button>
-    </div>
-    <div id="leaderboard" class="hidden">
+    <div id="leaderboard">
         <h2>Leaderboard</h2>
-        <table id="leaderboard-table"></table>
+        <!-- JavaScript will populate this section -->
     </div>
+
     <script>
-        const startPage = document.getElementById('start-page');
-        const playerInputs = document.getElementById('player-inputs');
-        const tournamentSchedule = document.getElementById('tournament-schedule');
-        const resultsEntry = document.getElementById('results-entry');
-        const leaderboard = document.getElementById('leaderboard');
-        const playersDiv = document.getElementById('players');
-        const scheduleTable = document.getElementById('schedule');
-        const resultsTable = document.getElementById('results-table');
-        const leaderboardTable = document.getElementById('leaderboard-table');
-
-        document.getElementById('start-tournament').addEventListener('click', startTournament);
-
-        function startTournament() {
-            const playerCount = document.getElementById('player-count').value;
-            playersDiv.innerHTML = '';
-            for (let i = 0; i < playerCount; i++) {
-                playersDiv.innerHTML += `<input type='text' placeholder='Player ${i + 1} Name' id='player-${i + 1}' required>`;
-            }
-            startPage.classList.add('hidden');
-            playerInputs.classList.remove('hidden');
-        }
-
-        document.getElementById('assign-teams').addEventListener('click', assignTeams);
+        const teams = [];
+        const results = [];
 
         function assignTeams() {
-            const playerCount = document.getElementById('player-count').value;
-            const teamsCount = document.getElementById('team-count').value;
-            const players = [];
-            for (let i = 0; i < playerCount; i++) {
-                players.push(document.getElementById(`player-${i + 1}`).value);
-            }
-            const teamAssignments = [];
-            for (let i = 0; i < teamsCount; i++) {
-                teamAssignments.push([]);
-            }
-            players.forEach((player, index) => {
-                const teamIndex = Math.floor(Math.random() * teamsCount);
-                teamAssignments[teamIndex].push(player);
-            });
-            generateSchedule(teamAssignments);
+            // Logic for team assignment
+            // Example: teams.push('Team A', 'Team B');
         }
 
-        function generateSchedule(teams) {
-            scheduleTable.innerHTML = '<tr><th>Match</th><th>Team 1</th><th>Team 2</th></tr>';
-            for (let i = 0; i < teams.length - 1; i++) {
-                for (let j = i + 1; j < teams.length; j++) {
-                    scheduleTable.innerHTML += `<tr><td>Match ${i + 1}-${j + 1}</td><td>${teams[i].join(', ')}</td><td>${teams[j].join(', ')}</td></tr>`;
-                }
-            }
-            playerInputs.classList.add('hidden');
-            tournamentSchedule.classList.remove('hidden');
-            resultsEntry.classList.remove('hidden');
-        }
-        
-        document.getElementById('submit-results').addEventListener('click', submitResults);
-
-        function submitResults() {
-            const results = [];
-            const matches = resultsTable.getElementsByTagName('tr');
-            for (let row of matches) {
-                const team1Score = row.cells[1].querySelector('input').value;
-                const team2Score = row.cells[2].querySelector('input').value;
-                results.push({
-                    match: row.cells[0].innerText,
-                    team1Score,
-                    team2Score
-                });
-            }
-            updateLeaderboard(results);
+        function scheduleMatches() {
+            // Logic for scheduling matches
         }
 
-        function updateLeaderboard(results) {
-            // Leaderboard logic
-            // Example code to update localStorage and display leaderboard
-            leaderboard.style.display = 'block';
+        function trackResults() {
+            // Logic for tracking results
         }
+
+        function updateLeaderboard() {
+            // Logic for updating the leaderboard
+        }
+
+        function init() {
+            assignTeams();
+            scheduleMatches();
+            trackResults();
+            updateLeaderboard();
+        }
+
+        init();
     </script>
 </body>
 </html>
